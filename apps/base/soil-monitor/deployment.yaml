@@ -19,7 +19,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: soil-monitor
-          image: ghcr.io/brooksmtownsend/wireless-soil-monitor
+          image: ghcr.io/brooksmtownsend/soil-monitor
           env:
             # Override per environment in an overlay.
             - name: SOIL_MQTT_BROKER
