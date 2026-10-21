@@ -1,0 +1,24 @@
+apiVersion: v1
+data:
+    .dockerconfigjson: ENC[AES256_GCM,data:e8knLIjbQSpSilj9KMcctyi75I8TeoTvgbP2C7ejIb1SZW8OxscCabiUMCJc091INmqFCbkZNtIkaao0liNdjCv/xaM1dvMgQXP1Tg4oL30WiqTOdILwPxYmYnVNQsJcxsOyhX8FhtvXCZdClkdr+TgWTdFd7k7ol+Zjxoxz5p7cGs2NG7lXD3nKs3aIDwd4NNjv3GDvng54P00h0AUvwdmpKkT5qEoPGTyKvx40wjIO3fyX1z2ecCwEHxmf5owTlAspHgjbN/jKWV8LLk+z8Lz5nQ1a+A1XBrEa2Vu/3/c/C/HxLTrYT7uDDENbajnTgK9TDu7peLbfimzZUciFiA==,iv:rsDzoHhh8u60YrnMrOLGXlra+61f+N0iqJ4xuScA6fg=,tag:Xwx1V7chvzm6JCIjwmXA+Q==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: ghcr-pull
+    namespace: soil-monitor
+type: kubernetes.io/dockerconfigjson
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBxY1dZbUt6RjhFMTNzL2Na
+            QjF1RjZhNEFWT3pNYk9DVitubG90MXhvOHkwCjlGaGZCSjNLcGdsM1d4NU1OaCtF
+            cWV3RVlCTjVuTjBlS0ZJTWQrTXVWNTgKLS0tIEhRNmRVUm9RZXloa3hjZ09rdUZz
+            eks2dDRHRXZjazRycEZFYUFzZEx5LzAK89J8PkQ4hu+LIROzevXY5BEbMX4jqfng
+            EgE5sjvRYhvGrVg0FXBQZGfY/t45xxnRlweoTcFwhHUIR00VknBfeA==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1jweu6sxrzyg8ftj34ymtpscsuw983ghdvg6h7gc8mvt325uxae8q5wdxck
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-10-21T10:51:48Z"
+    mac: ENC[AES256_GCM,data:tgikKDz5kTgeikdKQNzIqc+tyK3ds4CMMWBkzeskH4e9ymcanRC2Zp78i/ZREZHKs75hRqyu2ShH00tCXlb/YJsdjay21wrjhSDN0JD7TrZbTBlD4ct4Q9kRDg/auPk8RkyGmzXjaS5el8uSUACmrtlFQAp6tnJ2zXFELoFdHQw=,iv:9h3titwGT8zaZ2SBAYYk+VqBkAto9dOJMx7i+97KUPk=,tag:kBI9Oa86M3lWDzRvgyLwDQ==,type:str]
+    version: 3.13.3

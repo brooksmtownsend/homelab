@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: soil-monitor
+spec:
+  ingressClassName: tailscale
+  defaultBackend:
+    service:
+      name: soil-monitor
+      port:
+        name: http
+  tls:
+    - hosts: [soil-monitor]
