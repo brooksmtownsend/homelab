@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# Vendored from rancher/local-path-provisioner v0.0.37 deploy/local-path-storage.yaml
+resources:
+  - local-path-storage.yaml
+patches:
+  # Helper pods use hostPath, which needs the privileged Pod Security level.
+  - target: {kind: Namespace, name: local-path-storage}
+    patch: |-
+      - op: add
+        path: /metadata/labels
+        value:
+          pod-security.kubernetes.io/enforce: privileged
+  # Make it the default class. Retain: don't delete app data (SQLite) with the PVC.
+  # reclaimPolicy is immutable on a StorageClass, so decide before first apply.
+  - target: {kind: StorageClass, name: local-path}
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          storageclass.kubernetes.io/is-default-class: "true"
+      - op: replace
+        path: /reclaimPolicy
+        value: Retain
+  # Talos root filesystem is read-only; use the directory UserVolume
+  # defined in talos/worker-local-path.patch.yaml.
+  - target: {kind: ConfigMap, name: local-path-config}
+    patch: |-
+      - op: replace
+        path: /data/config.json
+        value: |-
+          {
+            "nodePathMap": [
+              {
+                "node": "DEFAULT_PATH_FOR_NON_LISTED_NODES",
+                "paths": ["/var/mnt/local-path"]
+              }
+            ]
+          }

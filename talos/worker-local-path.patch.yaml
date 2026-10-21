@@ -1,0 +1,8 @@
+# A directory volume on the EPHEMERAL partition, mounted at /var/mnt/local-path
+# and visible to the kubelet. Backs the local-path StorageClass.
+# Not synced by Flux; apply per worker:
+#   talosctl -n <worker-ip> patch machineconfig --patch @talos/worker-local-path.patch.yaml
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: local-path
+volumeType: directory
