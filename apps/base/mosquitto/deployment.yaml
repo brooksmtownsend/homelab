@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1883
+        runAsGroup: 1883
+        fsGroup: 1883
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:2.0.22
+          ports:
+            - name: mqtt
+              containerPort: 1883
+              # Single worker: sensors connect to <worker LAN IP>:1883.
+              hostPort: 1883
+          readinessProbe:
+            tcpSocket: {port: mqtt}
+          livenessProbe:
+            tcpSocket: {port: mqtt}
+            initialDelaySeconds: 10
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: config
+              mountPath: /mosquitto/config
+              readOnly: true
+            - name: data
+              mountPath: /mosquitto/data
+      volumes:
+        - name: config
+          configMap:
+            name: mosquitto-config
+        - name: data
+          persistentVolumeClaim:
+            claimName: mosquitto-data

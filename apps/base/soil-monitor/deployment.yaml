@@ -23,7 +23,7 @@ spec:
           env:
             # Override per environment in an overlay.
             - name: SOIL_MQTT_BROKER
-              value: tcp://mosquitto:1883
+              value: tcp://mosquitto.mqtt.svc:1883
             - name: SOIL_MQTT_CLIENT_ID
               value: soil-monitor
           ports:

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config
+data:
+  mosquitto.conf: |
+    persistence true
+    persistence_location /mosquitto/data/
+    log_dest stdout
+    listener 1883
+    # The soil monitor has no MQTT credential settings and the sensors are
+    # LAN-only, so the broker is anonymous. Keep it off untrusted networks.
+    allow_anonymous true

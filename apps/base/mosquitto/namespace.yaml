@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mqtt
+  labels:
+    # hostPort (LAN exposure for the sensors) is forbidden below "privileged".
+    pod-security.kubernetes.io/enforce: privileged
