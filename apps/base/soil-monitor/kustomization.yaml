@@ -15,4 +15,4 @@ labels:
 images:
   - name: ghcr.io/brooksmtownsend/wireless-soil-monitor
     # Overlays or the GitOps image updater promote versions by changing newTag.
-    newTag: 0.0.0
+    newTag: 0.1.0
