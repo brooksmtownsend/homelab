@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mfp
+  # Tailnet-only. Never add the tailscale.com/funnel annotation: the app has no login.
+spec:
+  ingressClassName: tailscale
+  defaultBackend:
+    service:
+      name: mfp
+      port:
+        name: http
+  tls:
+    - hosts: [mfp]

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mfp-config
+data:
+  # Must exactly match the origin served by the Tailscale ingress:
+  # https://<ingress tls host>.<tailnet>.ts.net, no trailing slash.
+  # TODO: replace YOUR-TAILNET with the tailnet's MagicDNS name.
+  APP_URL: https://mfp.YOUR-TAILNET.ts.net
+  AI_PROVIDER: openrouter
+  AI_MODEL: openai/gpt-4.1-mini

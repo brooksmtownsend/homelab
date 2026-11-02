@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mfp-data
+spec:
+  # SQLite (WAL) + photos: single writer, block storage only.
+  accessModes: [ReadWriteOncePod]
+  resources:
+    requests:
+      storage: 5Gi
