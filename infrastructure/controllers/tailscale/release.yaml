@@ -18,5 +18,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: tailscale
+  values:
+    apiServerProxyConfig:
+      # Must be a string ("true"), matching --set-string in the helm CLI.
+      mode: "true"
   # The chart reads OAuth creds from the `operator-oauth` Secret
   # (keys: client_id, client_secret); it's supplied via SOPS rather than values.
